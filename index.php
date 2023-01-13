@@ -27,6 +27,17 @@ input::-webkit-inner-spin-button {
 
     <?php
         $length = $_GET['length'] ?? false;
+
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = '';
+            
+        while (strlen($pass) < $length) {
+            $char = substr($alphabet, rand(0, strlen($alphabet)), 1);
+            $pass .= $char;
+        }
+
+        echo $pass;
+
     ?>
 
 </body>

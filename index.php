@@ -16,11 +16,20 @@
         }
     </style>
     <?php
+        session_start();
+        
         require_once __DIR__ . "/helper.php";
 
         $length = $_GET['length'] ?? false;
 
-        $pass = pass_generator($length);
+        if($length) {
+            $pass = pass_generator($length);
+
+            $_SESSION['password'] = $pass;
+
+            header("Location: thankyou.php");
+        }
+        
     ?> 
 </head>
 
@@ -36,9 +45,6 @@
         >
         <input type="submit" value="GENERATE">
     </form>
-
-    <h1>Your new password is: <?php echo $pass ?> </h1>
-    
 
 </body>
 </html>

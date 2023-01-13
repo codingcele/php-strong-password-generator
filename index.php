@@ -27,7 +27,13 @@
 <body>
     <form action="">
         <label for="psw_length">Lunghezza password:</label>
-        <input type="number" min="1" name="length">
+        <input type="number" min="1" name="length"
+            <?php
+                if ($length) {
+                    echo "value='" . $length . "'";
+                }
+            ?>
+        >
         <input type="submit" value="GENERATE">
     </form>
 

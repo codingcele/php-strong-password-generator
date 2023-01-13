@@ -5,18 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strong password generator</title>
-</head>
+    <style>
+        *{
+            font-family: Verdana;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <?php
+        require_once __DIR__ . "/helper.php";
 
-<style>
-    *{
-        font-family: Verdana;
-    }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-</style>
+        $length = $_GET['length'] ?? false;
+
+        $pass = pass_generator($length);
+    ?> 
+</head>
 
 <body>
     <form action="">
@@ -25,25 +31,8 @@ input::-webkit-inner-spin-button {
         <input type="submit" value="GENERATE">
     </form>
 
-    <?php
-        $length = $_GET['length'] ?? false;
-
-
-        function pass_generator($length) {
-            $alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?=$)(/&%{}[]*+@#.:,;-_\"";
-            $pass = '';
-            
-            while (strlen($pass) < $length) {
-                $char = substr($alphabet, rand(0, strlen($alphabet)), 1);
-                $pass .= $char;
-            }
-
-            echo $pass;
-        }
-
-        pass_generator($length)
-
-    ?>
+    <h1>Your new password is: <?php echo $pass ?> </h1>
+    
 
 </body>
 </html>
